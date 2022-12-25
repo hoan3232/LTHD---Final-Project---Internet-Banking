@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import "express-async-error";
-
+import { knexInstance } from "./utils/db.js";
 dotenv.config();
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(cors);
 app.use(express.json());
 
 app.listen(process.env.PORT, function () {
-  console.log("Server is running");
+  console.log("Server is running with nodemon and TS");
 });
 
 app.use(function (req, res, next) {
