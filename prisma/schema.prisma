@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,27 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
-  role      Role     @default(USER)
-  posts     Post[]
+model CAccount {
+  id      Int      @id @default(autoincrement())
+  uname   String   @unique
+  passwd  String
+  cname   String
+  email   String   @unique
+  phone   String   @unique
+  CCredit CCredit?
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
-  title     String   @db.VarChar(255)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
-}
-
-enum Role {
-  USER
-  ADMIN
+model CCredit {
+  id       Int      @id @default(autoincrement())
+  ownerId  Int      @unique
+  crenum   String   @unique
+  CAccount CAccount @relation(fields: [ownerId], references: [id])
 }
