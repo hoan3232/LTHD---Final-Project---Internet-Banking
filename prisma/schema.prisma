@@ -7,19 +7,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model CAccount {
-  id      Int      @id @default(autoincrement())
-  uname   String   @unique
-  passwd  String
-  cname   String
-  email   String   @unique
-  phone   String   @unique
-  CCredit CCredit?
+model DS_CK {
+  Ngay_Gio                      DateTime 
+  Ma_Ng_Gui                     String   @db.Char(255)
+  Ma_Ng_Nhan                    String   @db.Char(255)
+  So_Tien                       Float?   @default(0)
+  Noi_Dung                      String?  @db.Text
+  Hinh_Thuc_TT                  Boolean?
+  TK_TT_DS_CK_Ma_Ng_GuiToTK_TT  TK_TT    @relation("DS_CK_Ma_Ng_GuiToTK_TT", fields: [Ma_Ng_Gui], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_CK_ibfk_1")
+  TK_TT_DS_CK_Ma_Ng_NhanToTK_TT TK_TT    @relation("DS_CK_Ma_Ng_NhanToTK_TT", fields: [Ma_Ng_Nhan], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_CK_ibfk_2")
+
+  @@index([Ma_Ng_Gui], map: "Ma_Ng_Gui")
+  @@index([Ma_Ng_Nhan], map: "Ma_Ng_Nhan")
+  @@id([Ngay_Gio, Ma_Ng_Gui])
 }
 
-model CCredit {
-  id       Int      @id @default(autoincrement())
-  ownerId  Int      @unique
-  crenum   String   @unique
-  CAccount CAccount @relation(fields: [ownerId], references: [id])
+model DS_NN {
+  Ngay_Gio                      DateTime 
+  Ma_Ng_Gui                     String   @db.Char(255)
+  Ma_Ng_Nhan                    String   @db.Char(255)
+  So_No                         Float?
+  Noi_Dung                      String?  @db.Text
+  Trang_Thai                    Boolean?
+  TK_TT_DS_NN_Ma_Ng_NhanToTK_TT TK_TT    @relation("DS_NN_Ma_Ng_NhanToTK_TT", fields: [Ma_Ng_Nhan], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_NN_ibfk_1")
+  TK_TT_DS_NN_Ma_Ng_GuiToTK_TT  TK_TT    @relation("DS_NN_Ma_Ng_GuiToTK_TT", fields: [Ma_Ng_Gui], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_NN_ibfk_2")
+
+  @@index([Ma_Ng_Gui], map: "Ma_Ng_Gui")
+  @@index([Ma_Ng_Nhan], map: "Ma_Ng_Nhan")
+  @@id([Ngay_Gio, Ma_Ng_Gui])
+}
+
+model DS_TK {
+  Id          String  @id @db.Char(255)
+  Pass        String  @db.Text
+  Ten_DK      String  @db.Text
+  Ten_Goi_Nho String? @db.Text
+  Email       String  @db.Char(255)
+  Phone       String  @db.Char(255)
+  TK_TT       TK_TT?
+}
+
+model TK_TT {
+  Id                            String? @unique(map: "Id") @db.Char(255)
+  STK                           String  @id @db.Char(255)
+  So_Du                         Float?  @default(0)
+  Ngan_Hang                     String? @db.Char(255)
+  DS_CK_DS_CK_Ma_Ng_GuiToTK_TT  DS_CK[] @relation("DS_CK_Ma_Ng_GuiToTK_TT")
+  DS_CK_DS_CK_Ma_Ng_NhanToTK_TT DS_CK[] @relation("DS_CK_Ma_Ng_NhanToTK_TT")
+  DS_NN_DS_NN_Ma_Ng_NhanToTK_TT DS_NN[] @relation("DS_NN_Ma_Ng_NhanToTK_TT")
+  DS_NN_DS_NN_Ma_Ng_GuiToTK_TT  DS_NN[] @relation("DS_NN_Ma_Ng_GuiToTK_TT")
+  DS_TK                         DS_TK?  @relation(fields: [Id], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "TK_TT_ibfk_1")
 }
