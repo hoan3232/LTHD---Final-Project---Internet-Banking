@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import "express-async-error";
+
 import user from "../routes/user.route.js";
+import employee from "../routes/employee.route.js";
 
 dotenv.config();
 // Init and setup Express
@@ -15,6 +17,7 @@ app.use(express.json());
 
 //Routes setup
 app.use("/users", user);
+app.use("/employee", employee);
 
 //Miscellaneous
 app.listen(process.env.PORT, function () {
