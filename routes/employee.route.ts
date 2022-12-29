@@ -1,8 +1,17 @@
 import { Router } from "express";
 import employeeModel from "../models/employee.model.js";
 const router = Router();
+
 router.get("/all", async function (req, res) {
     const list = await employeeModel.all();
+    res.status(201).json(list);
+});
+
+router.get("/:userId", async function (req, res) {
+    const userId = req.params.userId || 0;
+    String str = userId;
+    day,id = text.split(‘,’)
+    const list = await employeeModel.findByMaNgGui(day,id);
     res.status(201).json(list);
 });
 // router.get("/:name", async function (req, res) {

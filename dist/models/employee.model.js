@@ -2,13 +2,14 @@ import { prisma } from "../prisma/prisma.js";
 export async function all() {
     return await prisma.dS_CK.findMany();
 }
-// export async function findById(id) {
-//   return await prisma.dS_TK.findUnique({
-//     where: {
-//       Id: id,
-//     },
-//   });
-// }
+export async function findByMaNgGui(date, id) {
+    return await prisma.dS_CK.findUnique({
+        where: {
+            Ngay_Gio: date,
+            Ma_Ng_Gui: id
+        },
+    });
+}
 // export async function findByName(name) {
 //   return await prisma.dS_TK.findMany({
 //     where: {
@@ -17,8 +18,8 @@ export async function all() {
 //   });
 // }
 export default {
-    all
-    //   findById,
+    all,
+    findByMaNgGui
     //   findByName,
 };
 //# sourceMappingURL=employee.model.js.map
