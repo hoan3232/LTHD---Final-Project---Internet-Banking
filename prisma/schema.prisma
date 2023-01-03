@@ -51,7 +51,7 @@ model DS_TK {
 model TK_TT {
   Id                            String? @unique(map: "Id") @db.Char(255)
   STK                           String  @id @db.Char(255)
-  So_Du                         Float?  @default(0)
+  So_Du                         Float?  @default(100)
   Ngan_Hang                     String? @db.Char(255)
   DS_CK_DS_CK_Ma_Ng_GuiToTK_TT  DS_CK[] @relation("DS_CK_Ma_Ng_GuiToTK_TT")
   DS_CK_DS_CK_Ma_Ng_NhanToTK_TT DS_CK[] @relation("DS_CK_Ma_Ng_NhanToTK_TT")

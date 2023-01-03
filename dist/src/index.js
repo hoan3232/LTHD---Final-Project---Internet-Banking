@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import "express-async-error";
 import user from "../routes/user.route.js";
+import employee from "../routes/employee.route.js";
 dotenv.config();
 // Init and setup Express
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 //Routes setup
 app.use("/users", user);
+app.use("/employee", employee);
 //Miscellaneous
 app.listen(process.env.PORT, function () {
     console.log("Server is running with nodemon and TS");
