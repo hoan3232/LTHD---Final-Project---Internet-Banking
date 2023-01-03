@@ -1,6 +1,8 @@
 import { Router } from "express";
+import * as bcrypt from "bcryptjs";
 import { json } from "stream/consumers";
 import userModel from "../models/user.model.js";
+import { brotliCompressSync } from "zlib";
 
 const router = Router();
 router.get("/:userId", async function (req, res) {
@@ -9,10 +11,12 @@ router.get("/:userId", async function (req, res) {
   res.status(201).json(list);
 });
 
-router.get("/:name", async function (req, res) {
-  const userId = req.params.userId || 0;
-  const list = await userModel.findById(name);
-  res.status(201).json(list);
+router.post("/", async function (req, res) {
+  const user = req.body;
+  user.password = bcrypt.hashSync(user.password, 10);
+  user.id = await userModel.addUser(user);
+  delete user.password;
+  res.status(201).json(user);
 });
 
 export default router;

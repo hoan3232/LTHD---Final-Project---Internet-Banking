@@ -12,16 +12,36 @@ export async function findById(id) {
   });
 }
 
-export async function findByName(name) {
-  return await prisma.dS_TK.findMany({
+export async function addUser(user) {
+  const res = await prisma.dS_TK.create({ data: user });
+  return res[0];
+}
+
+export async function updateRefreshToken(id, refreshToken) {
+  return await prisma.dS_TK.update({
     where: {
-      Ten_DK: name,
+      Id: id,
+    },
+    data: { rfToken: refreshToken },
+  });
+}
+export async function isValidRefreshToken(id, refreshToken) {
+  const list = await prisma.dS_TK.findMany({
+    where: {
+      Id: id,
+      rfToken: refreshToken,
     },
   });
+  if (list.length > 0) {
+    return true;
+  }
+  return false;
 }
 
 export default {
   all,
   findById,
-  findByName,
+  addUser,
+  isValidRefreshToken,
+  updateRefreshToken,
 };
