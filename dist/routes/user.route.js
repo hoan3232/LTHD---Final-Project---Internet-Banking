@@ -1,5 +1,4 @@
 import { Router } from "express";
-import * as bcrypt from "bcryptjs";
 import userModel from "../models/user.model.js";
 const router = Router();
 router.get("/:userId", async function (req, res) {
@@ -9,7 +8,7 @@ router.get("/:userId", async function (req, res) {
 });
 router.post("/", async function (req, res) {
     const user = req.body;
-    user.password = bcrypt.hashSync(user.password, 10);
+    //user.Pass = bcrypt.hashSync(user.password, 10);
     user.id = await userModel.addUser(user);
     delete user.password;
     res.status(201).json(user);
