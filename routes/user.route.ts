@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { json } from "stream/consumers";
 import userModel from "../models/user.model.js";
 import { brotliCompressSync } from "zlib";
@@ -13,9 +13,9 @@ router.get("/:userId", async function (req, res) {
 
 router.post("/", async function (req, res) {
   const user = req.body;
-  user.password = bcrypt.hashSync(user.password, 10);
+  user.Pass = bcrypt.hashSync(user.password, 10);
   user.id = await userModel.addUser(user);
-  delete user.password;
+  delete user.Pass;
   res.status(201).json(user);
 });
 
