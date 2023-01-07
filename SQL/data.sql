@@ -8,13 +8,13 @@ insert DS_TK values ('name1', 'a1234', 'nva', 'aaa', 'nva@gmail.com', '036558959
 ('name8', 'a1234', 'nvh', null, 'nvh@gmail.com', '0361142143')
 
 insert TK_TT values ('name1', '0526745548', null, 'HDT'),
-('name2', '5420056987', null, 'HDT'),
-('name3', '0364785563', null, 'HDT'),
-('name4', '4833598059', null, 'HDT'),
-('name5', '0641646498', null, 'HDT'),
-('name6', '1605649649', null, 'HDT'),
-('name7', '5109849949', null, 'HDT'),
-('name8', '1640849416', null, 'HDT')
+('name2', '5420056987', 0, 'HDT'),
+('name3', '0364785563', 0, 'HDT'),
+('name4', '4833598059', 0, 'HDT'),
+('name5', '0641646498', 0, 'HDT'),
+('name6', '1605649649', 0, 'HDT'),
+('name7', '5109849949', 0, 'HDT'),
+('name8', '1640849416', 0, 'HDT')
 
 insert DS_CK values ('2022-12-12 07:00:00', '0526745548', '0641646498', 15000, N'Trả tiền bạn nhé', 0),
 ('2022-12-12 07:42:45', '0526745548', '1605649649', 52000, N'Trả tiền bạn nhé', 0),
