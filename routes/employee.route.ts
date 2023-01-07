@@ -13,9 +13,16 @@ router.get("/:name", async function (req, res) {
     const list = await employeeModel.findTransByMaNgGui(name);
     res.status(201).json(list);
 });
-router.post("/", async function (req, res) {
+
+router.post("/createUser", async function (req, res) {
     const user = req.body;
     const list = await employeeModel.createUser(user);
+    res.status(201).json(list);
+});
+
+router.post("/createAccount", async function (req, res) {
+    const user = req.body;
+    const list = await employeeModel.createUserAccount(user);
     res.status(201).json(list);
 });
 

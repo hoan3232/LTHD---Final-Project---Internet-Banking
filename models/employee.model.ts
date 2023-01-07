@@ -38,5 +38,6 @@ export default {
   all,
   findTransByMaNgGui,
   createUser,
-  topupAccount
+  topupAccount,
+  createUserAccount
 };
