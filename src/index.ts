@@ -6,6 +6,8 @@ import "express-async-error";
 
 import user from "../routes/user.route.js";
 import employee from "../routes/employee.route.js";
+import authmdw from "../middlewares/auth.mdw.js";
+import auth from "../routes/auth.route.js";
 
 dotenv.config();
 // Init and setup Express
@@ -18,6 +20,7 @@ app.use(express.json());
 //Routes setup
 app.use("/users", user);
 app.use("/employee", employee);
+app.use("/auth", auth);
 
 //Miscellaneous
 app.listen(process.env.PORT, function () {
