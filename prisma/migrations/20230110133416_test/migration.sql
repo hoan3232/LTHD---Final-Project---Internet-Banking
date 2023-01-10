@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `DS_TK` ADD COLUMN `rfToken` TEXT NULL;
+
+-- AlterTable
+ALTER TABLE `TK_TT` MODIFY `So_Du` DOUBLE NULL DEFAULT 0;
