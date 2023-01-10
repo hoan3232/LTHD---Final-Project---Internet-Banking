@@ -1,6 +1,6 @@
 import { prisma } from "../prisma/prisma.js";
 export async function all() {
-    return await prisma.tK_TT.findMany();
+    return await prisma.dS_TK.findMany();
 }
 export async function findTransByMaNgGui(name) {
     return await prisma.dS_CK.findMany({
@@ -27,11 +27,19 @@ export async function topupAccount(id, amount) {
         },
     });
 }
+export async function authUser(req, res, next) {
+    if (req.user == null) {
+        res.status(403);
+        return res.send("You do not have permission!");
+    }
+    next();
+}
 export default {
     all,
     findTransByMaNgGui,
     createUser,
     topupAccount,
-    createUserAccount
+    createUserAccount,
+    authUser
 };
 //# sourceMappingURL=employee.model.js.map

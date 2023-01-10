@@ -4,13 +4,14 @@ import morgan from "morgan";
 import cors from "cors";
 import "express-async-error";
 import user from "../routes/user.route.js";
-import employee from "../routes/employee.route.js";
+import employee, { setUser } from "../routes/employee.route.js";
 dotenv.config();
 // Init and setup Express
 const app = express();
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
+app.use(setUser);
 //Routes setup
 app.use("/users", user);
 app.use("/employee", employee);
