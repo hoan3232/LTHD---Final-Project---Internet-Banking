@@ -36,10 +36,10 @@ router.put("/:id/:amount", authUser, async function (req, res) {
 });
 
 export async function setUser(req, res, next) {
-    const userId = req.body.userId
-    console.log(userId)
-    console.log("hello")
-    if (userId) {
+    const userId = req.body.userId;
+    var temp = userId.substring(0, 3);
+    const verify = "emp";
+    if (userId && temp === verify) {
       req.user = await prisma.dS_TK.findUnique({
         where: {
           Id: userId
