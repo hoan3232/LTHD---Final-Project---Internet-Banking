@@ -49,8 +49,8 @@ model DS_TK {
 }
 
 model DS_GN {
-  Id1         String  @unique @db.Char(255)
-  Id2         String  @unique  @db.Char(255)
+  Id1         String  @db.Char(255)
+  Id2         String  @db.Char(255)
   Ten_Goi_Nho String? @db.Text
   Email       String  @db.Char(255)
   Phone       String  @db.Char(255)
