@@ -11,9 +11,15 @@ router.get("/all", async function (req, res) {
   res.status(201).json(list);
 });
 
-router.get("/:id", async function (req, res) {
+router.get("/info/:id", async function (req, res) {
   const userId = req.params.id || 0;
   const list = await userModel.accountInfo(userId);
+  res.status(201).json(list);
+});
+
+router.get("/history/:id", async function (req, res) {
+  const userId = req.params.id || 0;
+  const list = await userModel.transHistory(userId);
   res.status(201).json(list);
 });
 
