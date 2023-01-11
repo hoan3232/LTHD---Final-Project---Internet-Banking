@@ -5,7 +5,13 @@ insert DS_TK values ('name1', 'a1234', 'nva', 'aaa', 'nva@gmail.com', '036558959
 ('name5', 'a1234', 'nve', null, 'nve@gmail.com', '0369912913'),
 ('name6', 'a1234', 'nvf', null, 'nvf@gmail.com', '0363320321'),
 ('name7', 'a1234', 'nvg', null, 'nvg@gmail.com', '0367762763'),
-('name8', 'a1234', 'nvh', null, 'nvh@gmail.com', '0361142143')
+('name8', 'a1234', 'nvh', null, 'nvh@gmail.com', '0361142143'),
+('adm01', 'admin', 'admin', null, 'admin@gmail.com', '0361142341'),
+('emp01', 'emp01', 'emp01', null, 'emp01@gmail.com', '0361142431'),
+
+-- adm for admin
+-- emp for employee
+-- else for user
 
 insert TK_TT values ('name1', '0526745548', null, 'HDT'),
 ('name2', '5420056987', 0, 'HDT'),
