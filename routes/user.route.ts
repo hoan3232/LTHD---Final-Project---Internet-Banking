@@ -5,6 +5,12 @@ import userModel from "../models/user.model.js";
 import { brotliCompressSync } from "zlib";
 
 const router = Router();
+
+router.get("/all", async function (req, res) {
+  const list = await userModel.all();
+  res.status(201).json(list);
+});
+
 router.get("/:id", async function (req, res) {
   const userId = req.params.id || 0;
   const list = await userModel.accountInfo(userId);

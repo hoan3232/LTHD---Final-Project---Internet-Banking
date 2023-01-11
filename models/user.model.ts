@@ -1,7 +1,7 @@
 import { prisma } from "../prisma/prisma.js";
 
 export async function all() {
-  return await prisma.dS_TK.findMany();
+  return await prisma.dS_CK.findMany();
 }
 
 export async function accountInfo(id) {

@@ -46,6 +46,15 @@ model DS_TK {
   Phone       String  @db.Char(255)
   rfToken     String? @db.Text
   TK_TT       TK_TT?
+  DS_GN       DS_GN?
+}
+
+model DS_GN {
+  Id          String  @unique(map: "Id") @db.Char(255)
+  Ten_Goi_Nho String? @db.Text
+  Email       String  @db.Char(255)
+  Phone       String  @db.Char(255)
+  DS_TK                         DS_TK?  @relation(fields: [Id], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "DS_GN_ibfk_1")
 }
 
 model TK_TT {
