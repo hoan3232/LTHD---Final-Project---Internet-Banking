@@ -1,5 +1,5 @@
 import * as express from "express";
-import * as bcrypt from "bcryptjs";
+import * as bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import * as randomstring from "randomstring";
 import userModel from "../models/user.model.js";
@@ -8,13 +8,13 @@ import validate from "../middlewares/validate.mdw.js";
 
 const router = express.Router();
 router.post("/", async function (req, res) {
-  const user = await userModel.findById(req.body.id);
+  const user = await userModel.findById(req.body.username);
   if (user === null) {
     return res.json({
       authenticated: false,
     });
   }
-  if (!bcrypt.compareSync(req.body.Pass, user.Pass)) {
+  if (!bcrypt.compareSync(req.body.password, user.Pass)) {
     return res.json({
       authenticated: false,
     });
