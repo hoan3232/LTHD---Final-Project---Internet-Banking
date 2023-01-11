@@ -46,15 +46,18 @@ model DS_TK {
   Phone       String  @db.Char(255)
   rfToken     String? @db.Text
   TK_TT       TK_TT?
-  DS_GN       DS_GN?
 }
 
 model DS_GN {
-  Id          String  @unique(map: "Id") @db.Char(255)
+  Id1         String  @unique @db.Char(255)
+  Id2         String  @unique  @db.Char(255)
   Ten_Goi_Nho String? @db.Text
   Email       String  @db.Char(255)
   Phone       String  @db.Char(255)
-  DS_TK                         DS_TK?  @relation(fields: [Id], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "DS_GN_ibfk_1")
+  DS_TK1       TK_TT  @relation("DS_TK1", fields: [Id1], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "DS_GN_ibfk_1")
+  DS_TK2       TK_TT  @relation("DS_TK2", fields: [Id2], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "DS_GN_ibfk_2")
+
+  @@id([Id1, Id2])
 }
 
 model TK_TT {
@@ -66,5 +69,7 @@ model TK_TT {
   DS_CK_DS_CK_Ma_Ng_NhanToTK_TT DS_CK[] @relation("DS_CK_Ma_Ng_NhanToTK_TT")
   DS_NN_DS_NN_Ma_Ng_NhanToTK_TT DS_NN[] @relation("DS_NN_Ma_Ng_NhanToTK_TT")
   DS_NN_DS_NN_Ma_Ng_GuiToTK_TT  DS_NN[] @relation("DS_NN_Ma_Ng_GuiToTK_TT")
+  DS_GN1                        DS_GN[] @relation("DS_TK1")
+  DS_GN2                        DS_GN[] @relation("DS_TK2")
   DS_TK                         DS_TK?  @relation(fields: [Id], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "TK_TT_ibfk_1")
 }
