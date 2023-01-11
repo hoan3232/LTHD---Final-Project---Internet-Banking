@@ -7,6 +7,7 @@ import "express-async-error";
 import user from "../routes/user.route.js";
 import authmdw from "../middlewares/auth.mdw.js";
 import auth from "../routes/auth.route.js";
+import externalAPI from "../routes/externalAPI.route.js";
 import employee, { setUser } from "../routes/employee.route.js";
 
 dotenv.config();
@@ -19,10 +20,10 @@ app.use(express.json());
 app.use(setUser);
 
 //Routes setup
-app.use("/users", user);
+app.use("/users", authmdw, user);
 app.use("/employee", employee);
 app.use("/auth", auth);
-
+app.use("/API", externalAPI);
 //Miscellaneous
 app.listen(process.env.PORT, function () {
   console.log("Server is running with nodemon and TS");

@@ -9,6 +9,7 @@ insert DS_TK values ('name1', 'a1234', 'nva', 'aaa', 'nva@gmail.com', '036558959
 ('adm01', 'admin', 'admin', null, 'admin@gmail.com', '0361142341', ''),
 ('emp01', 'emp01', 'emp01', null, 'emp01@gmail.com', '0361142431', '')
 
+
 -- adm for admin
 -- emp for employee
 -- else for user

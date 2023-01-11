@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 export default (function (req, res, next) {
-  const accessToken = req.headers["x-access-token"];
+  const accessToken = req.body.token || req.headers["x-access-token"];
   if (accessToken) {
     try {
-      const decoded = jwt.verify(accessToken, "SECRET_KEY");
+      const decoded = jwt.verify(accessToken, process.env.SECRETKEY);
       req.accessTokenPayload = decoded;
       next();
     } catch (err) {
