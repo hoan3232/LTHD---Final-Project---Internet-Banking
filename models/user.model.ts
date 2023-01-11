@@ -7,22 +7,22 @@ export async function all() {
 export async function accountInfo(id) {
   return await prisma.tK_TT.findUnique({
     where: {
-      Id: id
-    }
+      Id: id,
+    },
   });
 }
 
 export async function transHistory(id) {
-  let lastDay = new Date (Date.now() - (24 * 60 * 60 * 1000));
+  let lastDay = new Date(Date.now() - 24 * 60 * 60 * 1000);
   return await prisma.dS_CK.findMany({
     where: {
       AND: [
         {
-          Ma_Ng_Gui: id
+          Ma_Ng_Gui: id,
         },
         {
           Ngay_Gio: {
-            gte: lastDay
+            gte: lastDay,
           },
         },
       ],
@@ -34,6 +34,13 @@ export async function findById(id) {
   return await prisma.dS_TK.findUnique({
     where: {
       Id: id,
+    },
+    include: {
+      TK_TT: {
+        select: {
+          So_Du: true,
+        },
+      },
     },
   });
 }

@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import "express-async-error";
-
+import * as bcrypt from "bcrypt";
 import user from "../routes/user.route.js";
 import authmdw from "../middlewares/auth.mdw.js";
 import auth from "../routes/auth.route.js";
@@ -18,7 +18,11 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(setUser);
-
+const hash = bcrypt.compareSync(
+  "a1234",
+  "$2b$10$xS.t8CqPapoWZsFfRwKjTuMmg.hjajEJa2upsa12SmJI9Xve.JNe2"
+);
+console.log(hash);
 //Routes setup
 app.use("/users", authmdw, user);
 app.use("/employee", employee);

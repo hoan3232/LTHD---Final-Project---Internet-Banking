@@ -22,6 +22,8 @@ router.post("/", async function (req, res) {
   const accessToken = jwt.sign(
     {
       userId: user.Id,
+      Name: user.Ten_Goi_Nho || user.Ten_DK,
+      SoDu: user.TK_TT.So_Du,
     },
     "SECRET_KEY",
     {
