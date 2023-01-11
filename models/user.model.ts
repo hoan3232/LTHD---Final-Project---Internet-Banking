@@ -39,6 +39,7 @@ export async function findById(id) {
       TK_TT: {
         select: {
           So_Du: true,
+          STK: true,
         },
       },
     },
