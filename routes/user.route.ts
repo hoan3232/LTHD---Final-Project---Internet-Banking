@@ -1,8 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
-import { json } from "stream/consumers";
+import authMdw from "../middlewares/auth.mdw.js";
 import userModel from "../models/user.model.js";
-import { brotliCompressSync } from "zlib";
 
 const router = Router();
 
@@ -14,7 +13,11 @@ router.get("/all", async function (req, res) {
 router.get("/:id", async function (req, res) {
   const userId = req.params.id || 0;
   const list = await userModel.accountInfo(userId);
-  res.status(201).json(list);
+  if (list) {
+    return res.status(201).json(list);
+  }
+
+  res.status(200).json({ message: "No account found" });
 });
 
 router.post("/", async function (req, res) {

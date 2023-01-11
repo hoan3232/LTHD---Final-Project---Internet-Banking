@@ -55,6 +55,16 @@ CREATE TABLE DS_NN
 )
 GO
 
+CREATE TABLE DS_GN ( 
+	Id1 varchar(255), 
+	Id2 varchar(255), 
+	Ten_Goi_Nho varchar(255) 
+	
+	primary key(Id1, Id2)
+) 
+go
+
+
 ALTER TABLE dbo.TK_TT ADD FOREIGN KEY (ID_TK) REFERENCES dbo.DS_TK (ID_TK)	
 
 ALTER TABLE dbo.DS_CK ADD FOREIGN KEY (Ma_Ng_Gui) REFERENCES dbo.TK_TT (Ma_TK)

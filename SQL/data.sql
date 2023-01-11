@@ -1,13 +1,13 @@
-insert DS_TK values ('name1', 'a1234', 'nva', 'aaa', 'nva@gmail.com', '0365589590'),
-('name2', 'a1234', 'nvb', 'bbb', 'nvb@gmail.com', '0364421422'),
-('name3', 'a1234', 'nvc', 'ccc', 'nvc@gmail.com', '0368836837'),
-('name4', 'a1234', 'nvd', 'ddd', 'nvd@gmail.com', '0364498499'),
-('name5', 'a1234', 'nve', null, 'nve@gmail.com', '0369912913'),
-('name6', 'a1234', 'nvf', null, 'nvf@gmail.com', '0363320321'),
-('name7', 'a1234', 'nvg', null, 'nvg@gmail.com', '0367762763'),
-('name8', 'a1234', 'nvh', null, 'nvh@gmail.com', '0361142143'),
-('adm01', 'admin', 'admin', null, 'admin@gmail.com', '0361142341'),
-('emp01', 'emp01', 'emp01', null, 'emp01@gmail.com', '0361142431'),
+insert DS_TK values ('name1', 'a1234', 'nva', 'aaa', 'nva@gmail.com', '0365589590', ''),
+('name2', 'a1234', 'nvb', 'bbb', 'nvb@gmail.com', '0364421422', ''),
+('name3', 'a1234', 'nvc', 'ccc', 'nvc@gmail.com', '0368836837', ''),
+('name4', 'a1234', 'nvd', 'ddd', 'nvd@gmail.com', '0364498499', ''),
+('name5', 'a1234', 'nve', null, 'nve@gmail.com', '0369912913', ''),
+('name6', 'a1234', 'nvf', null, 'nvf@gmail.com', '0363320321', ''),
+('name7', 'a1234', 'nvg', null, 'nvg@gmail.com', '0367762763', ''),
+('name8', 'a1234', 'nvh', null, 'nvh@gmail.com', '0361142143', ''),
+('adm01', 'admin', 'admin', null, 'admin@gmail.com', '0361142341', ''),
+('emp01', 'emp01', 'emp01', null, 'emp01@gmail.com', '0361142431', ''),
 
 -- adm for admin
 -- emp for employee

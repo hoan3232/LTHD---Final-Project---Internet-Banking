@@ -37,7 +37,8 @@
     "mysql2": "^2.3.3",
     "node-rsa": "^1.1.1",
     "nodemon": "^2.0.20",
-    "randomstring": "^1.2.3"
+    "randomstring": "^1.2.3",
+    "sha256": "^0.2.0"
   },
   "devDependencies": {
     "@types/ajv": "^1.0.0",
