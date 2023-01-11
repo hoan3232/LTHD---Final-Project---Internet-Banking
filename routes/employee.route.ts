@@ -5,9 +5,11 @@ import employeeModel, { authUser } from "../models/employee.model.js";
 import { appendFile } from "fs";
 const router = Router();
 
+
 router.get("/all", authUser, async function (req, res) {
   const list = await employeeModel.all();
   res.status(201).json(list);
+
 });
 
 router.get("/:name", authUser, async function (req, res) {

@@ -12,6 +12,24 @@ export async function accountInfo(id) {
   });
 }
 
+export async function transHistory(id) {
+  let lastDay = new Date (Date.now() - (24 * 60 * 60 * 1000));
+  return await prisma.dS_CK.findMany({
+    where: {
+      AND: [
+        {
+          Ma_Ng_Gui: id
+        },
+        {
+          Ngay_Gio: {
+            gte: lastDay
+          },
+        },
+      ],
+    },
+  });
+}
+
 export async function findById(id) {
   return await prisma.dS_TK.findUnique({
     where: {
@@ -49,6 +67,7 @@ export async function isValidRefreshToken(id, refreshToken) {
 export default {
   all,
   accountInfo,
+  transHistory,
   findById,
   addUser,
   isValidRefreshToken,
