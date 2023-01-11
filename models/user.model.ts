@@ -4,6 +4,14 @@ export async function all() {
   return await prisma.dS_TK.findMany();
 }
 
+export async function accountInfo(id) {
+  return await prisma.tK_TT.findUnique({
+    where: {
+      Id: id
+    }
+  });
+}
+
 export async function findById(id) {
   return await prisma.dS_TK.findUnique({
     where: {
@@ -40,6 +48,7 @@ export async function isValidRefreshToken(id, refreshToken) {
 
 export default {
   all,
+  accountInfo,
   findById,
   addUser,
   isValidRefreshToken,
