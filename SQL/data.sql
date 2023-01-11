@@ -13,6 +13,11 @@ insert DS_TK values ('name1', 'a1234', 'nva', 'aaa', 'nva@gmail.com', '036558959
 -- emp for employee
 -- else for user
 
+insert DS_GN values ('name1', 'name2', 'a', 'nva@gmail.com', '0365589590'),
+('name1', 'name3', 'b', 'nvb@gmail.com', '0364421422'),
+('name1', 'name4', 'c', 'nvc@gmail.com', '0368836837'),
+('name1', 'name5', 'd', 'nvd@gmail.com', '0364498499'),
+
 insert TK_TT values ('name1', '0526745548', null, 'HDT'),
 ('name2', '5420056987', 0, 'HDT'),
 ('name3', '0364785563', 0, 'HDT'),
