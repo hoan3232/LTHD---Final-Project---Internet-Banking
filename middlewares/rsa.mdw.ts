@@ -26,13 +26,23 @@ export default async function validationCheck(req, res, next) {
   }
 
   if (!(bank.bankName === resDecrypt(req.body.BankHash, key.myprivatekey))) {
-    return res
-      .status(200)
-      .json({
-        message:
-          "Your bank is not connected to our, please make a connection request",
-      });
+    return res.status(200).json({
+      message:
+        "Your bank is not connected to our, please make a connection request",
+    });
   }
-  req.body.data = resDecrypt(req.body.data, key.myprivatekey);
+  if (!req.body.signatureHash) next();
+
+  if (
+    !(
+      resDecrypt(req.body.signatureHash, key.myprivatekey) ===
+      req.body.signature
+    )
+  ) {
+    return res.status(200).json({
+      message: "Signature has been modified!!!",
+    });
+  }
+
   next();
 }
