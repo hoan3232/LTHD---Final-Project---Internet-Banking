@@ -30,6 +30,10 @@ export async function transHistory(id) {
   });
 }
 
+export async function createContact(contact) {
+  return await prisma.dS_GN.create({data: contact});
+}
+
 export async function findById(id) {
   return await prisma.dS_TK.findUnique({
     where: {
@@ -76,6 +80,7 @@ export default {
   all,
   accountInfo,
   transHistory,
+  createContact,
   findById,
   addUser,
   isValidRefreshToken,
