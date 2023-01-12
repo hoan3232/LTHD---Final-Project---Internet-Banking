@@ -32,7 +32,7 @@ router.post("/", async function (req, res) {
     }
   );
   const refreshToken = randomstring.generate();
-  await userModel.updateRefreshToken(user.Id, refreshToken);
+  //await userModel.updateRefreshToken(user.Id, refreshToken);
   res.json({
     authenticated: true,
     accessToken,

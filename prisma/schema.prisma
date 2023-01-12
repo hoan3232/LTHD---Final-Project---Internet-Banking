@@ -78,6 +78,13 @@ model TK_TT {
   DS_TK                         DS_TK?  @relation(fields: [Id], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "TK_TT_ibfk_1")
 }
 
+
+model ConnectedBanks {
+  id       BigInt  @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
+  bankName String? @db.Text
+}
+
+
 model mykeys {
   id           BigInt  @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
   myprivatekey String? @db.Text

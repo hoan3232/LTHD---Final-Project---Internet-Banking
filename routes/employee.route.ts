@@ -1,15 +1,13 @@
-import { Prisma } from "@prisma/client";
 import { prisma } from "../prisma/prisma.js";
+import * as bcrypt from "bcrypt";
 import { Router } from "express";
 import employeeModel, { authUser } from "../models/employee.model.js";
-import { appendFile } from "fs";
-const router = Router();
 
+const router = Router();
 
 router.get("/all", authUser, async function (req, res) {
   const list = await employeeModel.all();
   res.status(201).json(list);
-
 });
 
 router.get("/:name", authUser, async function (req, res) {
@@ -20,6 +18,7 @@ router.get("/:name", authUser, async function (req, res) {
 
 router.post("/createUser", authUser, async function (req, res) {
   const user = req.body;
+  user.Pass = bcrypt.hashSync(user.Pass, 10);
   const list = await employeeModel.createUser(user);
   res.status(201).json(list);
 });

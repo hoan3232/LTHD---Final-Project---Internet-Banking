@@ -18,11 +18,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(setUser);
-const hash = bcrypt.compareSync(
-  "a1234",
-  "$2b$10$xS.t8CqPapoWZsFfRwKjTuMmg.hjajEJa2upsa12SmJI9Xve.JNe2"
-);
-console.log(hash);
+
 //Routes setup
 app.use("/users", user);
 app.use("/employee", employee);
