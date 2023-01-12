@@ -26,6 +26,12 @@ router.get("/history/:id", async function (req, res) {
   res.status(201).json(list);
 });
 
+router.post("/createContact", async function (req, res) {
+  const contact = req.body;
+  const list = await userModel.createContact(contact);
+  res.status(201).json(list);
+});
+
 router.post("/", async function (req, res) {
   const user = req.body;
   user.Pass = bcrypt.hashSync(user.password, 10);
