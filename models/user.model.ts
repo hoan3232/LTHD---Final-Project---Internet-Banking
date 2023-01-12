@@ -13,7 +13,7 @@ export async function accountInfo(id) {
 }
 
 export async function transHistory(id) {
-  let lastDay = new Date(Date.now() - (30 * 24 * 60 * 60 * 1000));
+  var lastDay = new Date(Date.now() - (30 * 24 * 60 * 60 * 1000));
   return await prisma.dS_CK.findMany({
     where: {
       AND: [
@@ -31,7 +31,55 @@ export async function transHistory(id) {
 }
 
 export async function createContact(contact) {
-  return await prisma.dS_GN.create({data: contact});
+  var name = await prisma.tK_TT.findUnique({
+    where: {
+      STK: contact.Id2,
+    },
+    include: {
+      DS_TK: {
+        select: {
+          Ten_DK: true,
+        },
+      }
+    },
+  });
+
+  return await prisma.dS_GN.create({
+    data: {
+      Id1: contact.Id1,
+      Id2: contact.Id2,
+      TenGN: name.DS_TK.Ten_DK,
+    }
+  });
+}
+
+export async function accountStatus(id) {
+  var status = await prisma.tK_TT.findUnique({
+    where: {
+      Id: id,
+    },
+  });
+
+  if (status.Trang_Thai) {
+    return await prisma.tK_TT.update({
+      where: {
+        Id: id,
+      },
+      data: {
+        Trang_Thai: false,
+      }
+    });
+  }
+  else {
+    return await prisma.tK_TT.update({
+      where: {
+        Id: id,
+      },
+      data: {
+        Trang_Thai: true,
+      },
+    });
+  }
 }
 
 export async function findById(id) {
@@ -81,6 +129,7 @@ export default {
   accountInfo,
   transHistory,
   createContact,
+  accountStatus,
   findById,
   addUser,
   isValidRefreshToken,
