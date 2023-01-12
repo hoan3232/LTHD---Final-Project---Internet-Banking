@@ -16,6 +16,7 @@ export default async function validationCheck(req, res, next) {
       id: 1,
     },
   });
+
   const bank = await prisma.connectedBanks.findUnique({
     where: {
       id: req.body.id,
@@ -32,6 +33,7 @@ export default async function validationCheck(req, res, next) {
         message:
           "Your bank is not connected to our, please make a connection request",
       });
+
   }
   req.body.data = resDecrypt(req.body.data, key.myprivatekey);
   next();
