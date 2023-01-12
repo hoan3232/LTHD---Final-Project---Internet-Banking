@@ -12,6 +12,7 @@ model ConnectedBanks {
   bankName String? @db.Text
 }
 
+
 model DS_CK {
   Ngay_Gio                      DateTime
   Ma_Ng_Gui                     String   @db.Char(255)
