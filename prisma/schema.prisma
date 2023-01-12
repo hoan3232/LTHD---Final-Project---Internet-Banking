@@ -12,6 +12,7 @@ model ConnectedBanks {
   bankName String? @db.Text
 }
 
+
 model DS_CK {
   Ngay_Gio                      DateTime
   Ma_Ng_Gui                     String   @db.Char(255)
@@ -80,10 +81,6 @@ model TK_TT {
 }
 
 
-model ConnectedBanks {
-  id       BigInt  @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
-  bankName String? @db.Text
-}
 
 
 model mykeys {

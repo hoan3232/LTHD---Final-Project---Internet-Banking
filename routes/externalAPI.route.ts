@@ -6,10 +6,8 @@ const router = express.Router();
 
 async function rsaKeys() {
   const keys = new NodeRSA({ b: 512 });
-  keys.setOptions({ encryptionScheme: "pkcs1" });
   const publicKey = keys.exportKey("public");
   const privateKey = keys.exportKey("private");
-  console.log("updating private keys");
   await prisma.mykeys.update({
     where: {
       id: 1,
@@ -21,15 +19,20 @@ async function rsaKeys() {
   return publicKey;
 }
 
-router.get("/GetPublicKey", function (req, res) {
+router.get("/GetPublicKey", async function (req, res) {
+  const key = await rsaKeys();
+
   res.status(201).json({
-    publickey: rsaKeys(),
+    publickey: key,
   });
 });
 
-router.get("/sends", apiauth, function (req, res) {
+router.post("/sends", apiauth, function (req, res) {
   const data = req.body.data;
   console.log(data);
+  res.status(200).json({
+    message: "Valid data",
+  });
 });
 
 export default router;
