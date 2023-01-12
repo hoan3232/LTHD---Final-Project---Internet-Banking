@@ -12,8 +12,32 @@ export async function accountInfo(id) {
   });
 }
 
+export async function accountInfoPhone(phone) {
+  return await prisma.dS_TK.findUnique({
+    where: {
+      Phone: phone,
+    },
+    include: {
+      TK_TT: {
+        select: {
+          STK: true,
+          Ngan_Hang: true,
+        },
+      },
+    },
+  });
+}
+
+export async function accountInfoSTK(stk) {
+  return await prisma.tK_TT.findUnique({
+    where: {
+      STK: stk,
+    },
+  });
+}
+
 export async function transHistory(id) {
-  var lastDay = new Date(Date.now() - (30 * 24 * 60 * 60 * 1000));
+  var lastDay = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
   return await prisma.dS_CK.findMany({
     where: {
       AND: [
@@ -40,7 +64,7 @@ export async function createContact(contact) {
         select: {
           Ten_DK: true,
         },
-      }
+      },
     },
   });
 
@@ -49,7 +73,7 @@ export async function createContact(contact) {
       Id1: contact.Id1,
       Id2: contact.Id2,
       TenGN: name.DS_TK.Ten_DK,
-    }
+    },
   });
 }
 
@@ -67,10 +91,9 @@ export async function accountStatus(id) {
       },
       data: {
         Trang_Thai: false,
-      }
+      },
     });
-  }
-  else {
+  } else {
     return await prisma.tK_TT.update({
       where: {
         Id: id,
@@ -124,6 +147,24 @@ export async function isValidRefreshToken(id, refreshToken) {
   return false;
 }
 
+export async function depositViaSTK(stk: string, amount: number) {
+  return await prisma.tK_TT.update({
+    where: {
+      STK: stk,
+    },
+    data: {
+      So_Du: {
+        increment: amount,
+      },
+    },
+  });
+}
+
+export async function depositViaPhone(phone: string, amount: number) {
+  const STK = (await accountInfoPhone(phone)).TK_TT.STK;
+  return await depositViaSTK(STK, amount);
+}
+
 export default {
   all,
   accountInfo,
@@ -134,4 +175,6 @@ export default {
   addUser,
   isValidRefreshToken,
   updateRefreshToken,
+  accountInfoPhone,
+  accountInfoSTK,
 };
