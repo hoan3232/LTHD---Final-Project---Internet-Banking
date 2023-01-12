@@ -36,7 +36,7 @@ export async function topupAccount(id, amount) {
 export async function authUser(req, res, next) {
   if (req.user == null) {
     res.status(403);
-    return res.send("You do not have permission!");
+    return res.send("Endpoint not found!");
   }
 
   next();

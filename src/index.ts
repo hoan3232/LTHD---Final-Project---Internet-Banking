@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(setUser);
 
 //Routes setup
-app.use("/users", authmdw, user);
+app.use("/users", user);
 app.use("/employee", employee);
 app.use("/auth", auth);
 app.use("/API", externalAPI);

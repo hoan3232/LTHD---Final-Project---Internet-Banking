@@ -13,7 +13,7 @@ export async function accountInfo(id) {
 }
 
 export async function transHistory(id) {
-  let lastDay = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  let lastDay = new Date(Date.now() - (30 * 24 * 60 * 60 * 1000));
   return await prisma.dS_CK.findMany({
     where: {
       AND: [
@@ -28,6 +28,10 @@ export async function transHistory(id) {
       ],
     },
   });
+}
+
+export async function createContact(contact) {
+  return await prisma.dS_GN.create({data: contact});
 }
 
 export async function findById(id) {
@@ -76,6 +80,7 @@ export default {
   all,
   accountInfo,
   transHistory,
+  createContact,
   findById,
   addUser,
   isValidRefreshToken,
