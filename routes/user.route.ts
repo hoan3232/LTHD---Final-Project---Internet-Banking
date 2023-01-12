@@ -32,6 +32,12 @@ router.post("/createContact", async function (req, res) {
   res.status(201).json(list);
 });
 
+router.post("/status/:id", async function (req, res) {
+  const userId = req.params.id || 0;
+  const list = await userModel.accountStatus(userId);
+  res.status(201).json(list);
+});
+
 router.post("/", async function (req, res) {
   const user = req.body;
   user.Pass = bcrypt.hashSync(user.password, 10);
