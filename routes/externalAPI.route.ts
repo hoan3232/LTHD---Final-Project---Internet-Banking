@@ -77,6 +77,8 @@ router.post("/deposite/:phone/:amount", apiauth, async function (req, res) {
     return res.status(402).json({
       messsage: "Account not found",
     });
+
+  userModel.depositViaPhone(req.params.phone, parseInt(req.params.amount));
 });
 
 router.post("/deposite/:stk/:amount", apiauth, async function (req, res) {
@@ -100,6 +102,8 @@ router.post("/deposite/:stk/:amount", apiauth, async function (req, res) {
     return res.status(402).json({
       messsage: "Account not found",
     });
+
+  userModel.depositViaSTK(req.params.stk, parseInt(req.params.amount));
 });
 
 // router.post("/RequestConnection", async function (req, res) {

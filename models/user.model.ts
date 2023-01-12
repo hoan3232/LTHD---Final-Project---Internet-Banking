@@ -177,4 +177,6 @@ export default {
   updateRefreshToken,
   accountInfoPhone,
   accountInfoSTK,
+  depositViaPhone,
+  depositViaSTK,
 };
