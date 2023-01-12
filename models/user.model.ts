@@ -31,7 +31,26 @@ export async function transHistory(id) {
 }
 
 export async function createContact(contact) {
-  return await prisma.dS_GN.create({data: contact});
+  var name = await prisma.tK_TT.findUnique({
+    where: {
+      STK: contact.Id2,
+    },
+    include: {
+      DS_TK: {
+        select: {
+          Ten_DK: true,
+        },
+      }
+    },
+  });
+  
+  return await prisma.dS_GN.create({
+    data: {
+      Id1: contact.Id1,
+      Id2: contact.Id2,
+      TenGN: name.DS_TK.Ten_DK,
+    }
+  });
 }
 
 export async function findById(id) {
