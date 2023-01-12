@@ -24,7 +24,7 @@ const hash = bcrypt.compareSync(
 );
 console.log(hash);
 //Routes setup
-app.use("/users", authmdw, user);
+app.use("/users", user);
 app.use("/employee", employee);
 app.use("/auth", auth);
 app.use("/API", externalAPI);
