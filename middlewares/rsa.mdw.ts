@@ -8,16 +8,15 @@ function resDecrypt(text, key) {
 }
 
 export default async function validationCheck(req, res, next) {
-  // if (Date.now() - res.time > 1000)
-  //   return res.status(200).json({ message: "Request timed out" });
+  if (Date.now() - res.time > 10000) {
+    return res.status(200).json({ message: "Request timed out" });
+  }
   const key = await prisma.mykeys.findUnique({
     where: {
       id: 1,
     },
   });
-  //console.log(key.myprivatekey);
-  //console.log(req.body.BankHash);
-  //console.log(resDecrypt(req.body.BankHash, key.myprivatekey));
+
   const bank = await prisma.connectedBanks.findUnique({
     where: {
       id: req.body.id,
@@ -28,7 +27,13 @@ export default async function validationCheck(req, res, next) {
   }
 
   if (!(bank.bankName === resDecrypt(req.body.BankHash, key.myprivatekey))) {
-    return res.status(200).json({ message: "Bank is not connected" });
+    return res
+      .status(200)
+      .json({
+        message:
+          "Your bank is not connected to our, please make a connection request",
+      });
+
   }
   req.body.data = resDecrypt(req.body.data, key.myprivatekey);
   next();
