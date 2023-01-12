@@ -69,13 +69,13 @@ router.post("/deposite/:phone/:amount", apiauth, async function (req, res) {
 
   if (parseInt(req.params.amount) < 0)
     return res.status(402).json({
-      messsage: "Invalid Amount",
+      messsage: "Invalid Amount!",
     });
 
   const account = await userModel.accountInfoPhone(req.params.phone);
   if (!account)
     return res.status(402).json({
-      messsage: "Account not found",
+      messsage: "Account not found!",
     });
 
   userModel.depositViaPhone(req.params.phone, parseInt(req.params.amount));
@@ -94,13 +94,13 @@ router.post("/deposite/:stk/:amount", apiauth, async function (req, res) {
 
   if (parseInt(req.params.amount) < 0)
     return res.status(402).json({
-      messsage: "Invalid Amount",
+      messsage: "Invalid Amount!",
     });
 
   const account = await userModel.accountInfoSTK(req.params.stk);
   if (!account)
     return res.status(402).json({
-      messsage: "Account not found",
+      messsage: "Account not found!",
     });
 
   userModel.depositViaSTK(req.params.stk, parseInt(req.params.amount));

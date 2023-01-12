@@ -26,13 +26,13 @@ router.post("/", async function (req, res) {
       Name: user.Ten_Goi_Nho || user.Ten_DK,
       SoDu: user.TK_TT.So_Du,
     },
-    "SECRET_KEY",
+    process.env.SECRETKEY,
     {
       expiresIn: 10 * 60, // seconds
     }
   );
   const refreshToken = randomstring.generate();
-  //await userModel.updateRefreshToken(user.Id, refreshToken);
+  await userModel.updateRefreshToken(user.Id, refreshToken);
   res.json({
     authenticated: true,
     accessToken,
@@ -45,14 +45,22 @@ router.post("/refresh", validate(rfTokenSchema), async function (req, res) {
   //   refreshToken
   // }
   const { accessToken, refreshToken } = req.body;
-  const { userId }: any = jwt.verify(accessToken, "SECRET_KEY", {
-    ignoreExpiration: true,
-  });
+  const { userId, stk, Name, SoDu }: any = jwt.verify(
+    accessToken,
+    "SECRET_KEY",
+    {
+      ignoreExpiration: true,
+    }
+  );
   const ret = await userModel.isValidRefreshToken(userId, refreshToken);
   if (ret === true) {
-    const newAccessToken = jwt.sign({ userId }, "SECRET_KEY", {
-      expiresIn: 60 * 10,
-    });
+    const newAccessToken = jwt.sign(
+      { userId, stk, Name, SoDu },
+      process.env.SECRETKEY,
+      {
+        expiresIn: 60 * 10,
+      }
+    );
     return res.json({
       accessToken: newAccessToken,
     });

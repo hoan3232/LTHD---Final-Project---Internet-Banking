@@ -9,7 +9,7 @@ import authmdw from "../middlewares/auth.mdw.js";
 import auth from "../routes/auth.route.js";
 import externalAPI from "../routes/externalAPI.route.js";
 import employee, { setUser } from "../routes/employee.route.js";
-
+import otp from "../routes/otp.route.js";
 dotenv.config();
 // Init and setup Express
 const app = express();
@@ -24,6 +24,7 @@ app.use("/users", user);
 app.use("/employee", employee);
 app.use("/auth", auth);
 app.use("/API", externalAPI);
+app.use("/otp", otp);
 //Miscellaneous
 app.listen(process.env.PORT, function () {
   console.log("Server is running with nodemon and TS");
