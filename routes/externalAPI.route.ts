@@ -35,4 +35,27 @@ router.post("/sends", apiauth, function (req, res) {
   });
 });
 
+router.post("/AccountInfo/:phone", apiauth, async function (req, res) {
+  const account = await prisma.dS_TK.findUnique({
+    where: {
+      Phone: req.params.phone,
+    },
+    include: {
+      TK_TT: {
+        select: {
+          STK: true,
+        },
+      },
+    },
+  });
+
+  if (account)
+    return res.status(200).json({
+      message: account,
+    });
+});
+
+// router.post("/RequestConnection", async function (req, res) {
+
+// })
 export default router;

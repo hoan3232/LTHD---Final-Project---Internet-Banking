@@ -12,7 +12,6 @@ model ConnectedBanks {
   bankName String? @db.Text
 }
 
-
 model DS_CK {
   Ngay_Gio                      DateTime
   Ma_Ng_Gui                     String   @db.Char(255)
@@ -60,7 +59,7 @@ model DS_TK {
   Ten_DK      String  @db.Text
   Ten_Goi_Nho String? @db.Text
   Email       String  @db.Char(255)
-  Phone       String  @db.Char(255)
+  Phone       String  @unique(map: "Phone") @db.Char(255)
   rfToken     String? @db.Text
   TK_TT       TK_TT?
 }
@@ -79,9 +78,6 @@ model TK_TT {
   DS_NN_DS_NN_Ma_Ng_GuiToTK_TT  DS_NN[]  @relation("DS_NN_Ma_Ng_GuiToTK_TT")
   DS_TK                         DS_TK?   @relation(fields: [Id], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "TK_TT_ibfk_1")
 }
-
-
-
 
 model mykeys {
   id           BigInt  @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
