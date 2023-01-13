@@ -54,7 +54,7 @@ router.post("/delete", async function (req, res) {
   const note = req.body;
   const list = await userModel.deleteNotice(note);
   res.status(201).json(list);
-})
+});
 
 router.put("/payment", async function (req, res) {
   const payment = req.body;
@@ -62,7 +62,7 @@ router.put("/payment", async function (req, res) {
 
   if (temp) {
     const list = await userModel.noticeStatus(payment);
-    res.status(201).json.(list);
+    res.status(201).json(list);
   }
 });
 
