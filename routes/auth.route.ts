@@ -19,12 +19,13 @@ router.post("/", async function (req, res) {
       authenticated: false,
     });
   }
+  const So_DuString = user.TK_TT.So_Du.toString();
   const accessToken = jwt.sign(
     {
       userId: user.Id,
       stk: user.TK_TT.STK,
       Name: user.Ten_Goi_Nho || user.Ten_DK,
-      SoDu: user.TK_TT.So_Du,
+      SoDu: So_DuString,
     },
     process.env.SECRETKEY,
     {
