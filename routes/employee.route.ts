@@ -25,6 +25,7 @@ router.post("/createUser", authUser, async function (req, res) {
 
 router.post("/createAccount", authUser, async function (req, res) {
   const user = req.body;
+  user.Pass = bcrypt.hashSync(user.Pass, 10);
   const list = await employeeModel.createUserAccount(user);
   res.status(201).json(list);
 });

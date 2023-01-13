@@ -91,7 +91,8 @@ router.get("/savedList/:id", async function (req, res) {
 });
 
 router.post("/changepassword/:id", checkOTP, async function (req, res) {
-  await userModel.changePassword(req.params.id, req.body.password);
+  const Pass = bcrypt.hashSync(req.body.password, 10);
+  await userModel.changePassword(req.params.id, Pass);
   res.status(201).json({
     message: "Password changed",
   });
