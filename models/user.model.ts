@@ -51,6 +51,46 @@ export async function transHistory(id) {
         },
       ],
     },
+    include: {
+      TK_TT_DS_CK_Ma_Ng_GuiToTK_TT: {
+        include: {
+          DS_TK: {
+            select: {
+              Ten_DK: true,
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+export async function receiveHistory(id) {
+  var lastDay = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  return await prisma.dS_CK.findMany({
+    where: {
+      AND: [
+        {
+          Ma_Ng_Nhan: id,
+        },
+        {
+          Ngay_Gio: {
+            gte: lastDay,
+          },
+        },
+      ],
+    },
+    include: {
+      TK_TT_DS_CK_Ma_Ng_GuiToTK_TT: {
+        include: {
+          DS_TK: {
+            select: {
+              Ten_DK: true,
+            },
+          },
+        },
+      },
+    },
   });
 }
 
@@ -223,6 +263,14 @@ export async function depositViaPhone(phone: string, amount: number) {
   return await depositViaSTK(STK, amount);
 }
 
+export async function savedList(id) {
+  return await prisma.dS_GN.findMany({
+    where: {
+      Id1: id,
+    },
+  });
+}
+
 export default {
   all,
   accountInfo,
@@ -242,4 +290,6 @@ export default {
   accountInfoSTK,
   depositViaPhone,
   depositViaSTK,
+  savedList,
+  receiveHistory,
 };

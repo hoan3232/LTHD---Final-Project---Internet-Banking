@@ -26,6 +26,12 @@ router.get("/history/:id", async function (req, res) {
   res.status(201).json(list);
 });
 
+router.get("/receive/:id", async function (req, res) {
+  const userId = req.params.id || 0;
+  const list = await userModel.receiveHistory(userId);
+  res.status(201).json(list);
+});
+
 router.post("/createContact", async function (req, res) {
   const contact = req.body;
   const list = await userModel.createContact(contact);
@@ -72,6 +78,11 @@ router.post("/", async function (req, res) {
   user.id = await userModel.addUser(user);
   delete user.Pass;
   res.status(201).json(user);
+});
+
+router.get("/savedList/:id", async function (req, res) {
+  const savedList = await userModel.savedList(req.params.id);
+  res.status(201).json(savedList);
 });
 
 export default router;
