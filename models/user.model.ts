@@ -82,6 +82,64 @@ export async function accountStatus(id) {
   }
 }
 
+export async function createNotice(note) {
+  return await prisma.dS_TK.create({ data: note });
+}
+
+export async function showNotice(id) {
+  return await prisma.dS_NN.findMany({
+    where: {
+      Ma_Ng_Gui: id,
+    },
+  });
+}
+
+export async function deleteNotice(data) {
+  return await prisma.dS_NN.deleteMany({
+    where: {
+      Ma_Ng_Gui: data.Id1,
+      Ma_Ng_Nhan: data.Id2,
+    },
+  });
+}
+
+export async function payment(payment) {
+  await prisma.tK_TT.update({
+    where: {
+      Id: payment.Id1,
+    },
+    data: {
+      So_Du: {
+        decrement: parseFloat(payment.amount),
+      },
+    },
+  });
+
+  await prisma.tK_TT.update({
+    where: {
+      Id: payment.Id2,
+    },
+    data: {
+      So_Du: {
+        increment: parseFloat(payment.amount),
+      },
+    },
+  });
+  return true;
+}
+
+export async function noticeStatus(payment) {
+  return await prisma.dS_NN.updateMany({
+    where: {
+      Ma_Ng_Gui: payment.Id1,
+      Ma_Ng_Nhan: payment.Id2,
+    },
+    data: {
+      Trang_Thai: true,
+    },
+  });
+}
+
 export async function findById(id) {
   return await prisma.dS_TK.findUnique({
     where: {
@@ -130,6 +188,11 @@ export default {
   transHistory,
   createContact,
   accountStatus,
+  createNotice,
+  showNotice,
+  deleteNotice,
+  payment,
+  noticeStatus,
   findById,
   addUser,
   isValidRefreshToken,
