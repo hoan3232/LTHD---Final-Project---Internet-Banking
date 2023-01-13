@@ -29,14 +29,14 @@ export async function createUserAccount(user) {
   return await prisma.tK_TT.create({ data: user });
 }
 
-export async function topupAccount(id, amount) {
+export async function topupAccount(data) {
   return await prisma.tK_TT.update({
     where: {
-      Id: id,
+      STK: data.Id,
     },
     data: {
       So_Du: {
-        increment: parseFloat(amount),
+        increment: parseFloat(data.Money),
       },
     },
   });

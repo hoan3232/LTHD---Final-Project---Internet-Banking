@@ -30,10 +30,9 @@ router.post("/createAccount", authUser, async function (req, res) {
   res.status(201).json(list);
 });
 
-router.put("/:id/:amount", authUser, async function (req, res) {
-  const id = req.params.id || 0;
-  const amount = req.params.amount || 0;
-  const list = await employeeModel.topupAccount(id, amount);
+router.put("/topupAccount", authUser, async function (req, res) {
+  const data = req.body;
+  const list = await employeeModel.topupAccount(data);
   res.status(201).json(list);
 });
 
