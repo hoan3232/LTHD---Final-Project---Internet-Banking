@@ -45,7 +45,7 @@ model DS_NN {
   Ma_Ng_Nhan                    String   @db.Char(255)
   So_No                         Float?
   Noi_Dung                      String?  @db.Text
-  Trang_Thai                    Boolean?
+  Trang_Thai                    Boolean? @default(false)
   TK_TT_DS_NN_Ma_Ng_NhanToTK_TT TK_TT    @relation("DS_NN_Ma_Ng_NhanToTK_TT", fields: [Ma_Ng_Nhan], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_NN_ibfk_1")
   TK_TT_DS_NN_Ma_Ng_GuiToTK_TT  TK_TT    @relation("DS_NN_Ma_Ng_GuiToTK_TT", fields: [Ma_Ng_Gui], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_NN_ibfk_2")
 
