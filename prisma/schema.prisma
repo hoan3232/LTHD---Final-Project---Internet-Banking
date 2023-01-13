@@ -12,7 +12,6 @@ model ConnectedBanks {
   bankName String? @db.Text
 }
 
-
 model DS_CK {
   Ngay_Gio                      DateTime
   Ma_Ng_Gui                     String   @db.Char(255)
@@ -32,6 +31,7 @@ model DS_GN {
   Id1                    String  @db.Char(255)
   Id2                    String  @db.Char(255)
   TenGN                  String? @db.Char(255)
+  NganHang               String? @db.Text
   TK_TT_DS_GN_Id1ToTK_TT TK_TT   @relation("DS_GN_Id1ToTK_TT", fields: [Id1], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_GN_ibfk_1")
   TK_TT_DS_GN_Id2ToTK_TT TK_TT   @relation("DS_GN_Id2ToTK_TT", fields: [Id2], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_GN_ibfk_2")
 

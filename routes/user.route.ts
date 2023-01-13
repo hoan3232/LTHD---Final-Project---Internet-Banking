@@ -50,12 +50,17 @@ router.post("/createNotice", async function (req, res) {
   res.status(201).json(list);
 });
 
-router.post("/notice/:id", async function (req, res) {
+router.get("/notice/:id", async function (req, res) {
   const userId = req.params.id || 0;
   const list = await userModel.showNotice(userId);
   res.status(201).json(list);
 });
 
+router.get("/debt/:id", async function (req, res) {
+  const userId = req.params.id || 0;
+  const list = await userModel.showDebt(userId);
+  res.status(201).json(list);
+});
 router.post("/delete", async function (req, res) {
   const note = req.body;
   const list = await userModel.deleteNotice(note);
