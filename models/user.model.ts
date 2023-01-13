@@ -210,6 +210,20 @@ export async function savedList(id) {
     where: {
       Id1: id,
     },
+    include: {
+      TK_TT_DS_GN_Id2ToTK_TT: {
+        include: {
+          DS_TK: {
+            select: {
+              Id: true,
+              Ten_DK: true,
+              Email: true,
+              Phone: true,
+            },
+          },
+        },
+      },
+    },
   });
 }
 

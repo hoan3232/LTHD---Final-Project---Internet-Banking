@@ -20,7 +20,7 @@ function sendEmail(otp, mail) {
   var mailOptions = {
     from: "anhhoanp@gmail.com",
     to: mail,
-    subject: "Sending Email using Node.js",
+    subject: "HTD Bank OTP code",
     text: body,
   };
 
