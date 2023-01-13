@@ -81,7 +81,7 @@ export async function receiveHistory(id) {
       ],
     },
     include: {
-      TK_TT_DS_CK_Ma_Ng_GuiToTK_TT: {
+      TK_TT_DS_CK_Ma_Ng_NhanToTK_TT: {
         include: {
           DS_TK: {
             select: {
@@ -153,6 +153,36 @@ export async function showNotice(id) {
   return await prisma.dS_NN.findMany({
     where: {
       Ma_Ng_Gui: id,
+    },
+    include: {
+      TK_TT_DS_NN_Ma_Ng_NhanToTK_TT: {
+        include: {
+          DS_TK: {
+            select: {
+              Ten_DK: true,
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+export async function showDebt(id) {
+  return await prisma.dS_NN.findMany({
+    where: {
+      Ma_Ng_Nhan: id,
+    },
+    include: {
+      TK_TT_DS_NN_Ma_Ng_GuiToTK_TT: {
+        include: {
+          DS_TK: {
+            select: {
+              Ten_DK: true,
+            },
+          },
+        },
+      },
     },
   });
 }
@@ -306,4 +336,5 @@ export default {
   depositViaSTK,
   savedList,
   receiveHistory,
+  showDebt,
 };
