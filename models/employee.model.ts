@@ -13,21 +13,30 @@ export async function findTransByMaNgGui(name) {
 }
 
 export async function createUser(user) {
-  return await prisma.dS_TK.create({ data: user });
+  return await prisma.dS_TK.create({
+    data: {
+      Id: user.Id,
+      Pass: user.Pass,
+      Ten_DK: user.Ten_DK,
+      Ten_Goi_Nho: user.Ten_Goi_Nho,
+      Email: user.Email,
+      Phone: user.Phone
+    },
+  });
 }
 
 export async function createUserAccount(user) {
   return await prisma.tK_TT.create({ data: user });
 }
 
-export async function topupAccount(id, amount) {
+export async function topupAccount(data) {
   return await prisma.tK_TT.update({
     where: {
-      Id: id,
+      STK: data.Id,
     },
     data: {
       So_Du: {
-        increment: parseFloat(amount),
+        increment: parseFloat(data.Money),
       },
     },
   });
