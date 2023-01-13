@@ -7,7 +7,16 @@ export async function all() {
 export async function accountInfo(id) {
   return await prisma.tK_TT.findUnique({
     where: {
-      Id: id,
+      STK: id,
+    },
+    include: {
+      DS_TK: {
+        select: {
+          Ten_DK: true,
+          Email: true,
+          Phone: true,
+        },
+      },
     },
   });
 }
