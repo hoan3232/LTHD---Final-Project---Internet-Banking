@@ -13,7 +13,16 @@ export async function findTransByMaNgGui(name) {
 }
 
 export async function createUser(user) {
-  return await prisma.dS_TK.create({ data: user });
+  return await prisma.dS_TK.create({
+    data: {
+      Id: user.Id,
+      Pass: user.Pass,
+      Ten_DK: user.Ten_DK,
+      Ten_Goi_Nho: user.Ten_Goi_Nho,
+      Email: user.Email,
+      Phone: user.Phone
+    },
+  });
 }
 
 export async function createUserAccount(user) {
