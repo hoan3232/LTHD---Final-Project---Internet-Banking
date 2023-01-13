@@ -2,7 +2,7 @@ import { Router } from "express";
 import bcrypt from "bcrypt";
 import authMdw from "../middlewares/auth.mdw.js";
 import userModel from "../models/user.model.js";
-
+import checkOTP from "../middlewares/checkOTP.mdw.js";
 const router = Router();
 
 router.get("/all", async function (req, res) {
@@ -88,6 +88,13 @@ router.post("/", async function (req, res) {
 router.get("/savedList/:id", async function (req, res) {
   const savedList = await userModel.savedList(req.params.id);
   res.status(201).json(savedList);
+});
+
+router.post("/changepassword/:id", checkOTP, async function (req, res) {
+  await userModel.changePassword(req.params.id, req.body.password);
+  res.status(201).json({
+    message: "Password changed",
+  });
 });
 
 export default router;

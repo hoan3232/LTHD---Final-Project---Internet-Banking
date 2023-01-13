@@ -315,6 +315,16 @@ export async function savedList(id) {
   });
 }
 
+export async function changePassword(id, password) {
+  return await prisma.dS_TK.update({
+    where: {
+      Id: id,
+    },
+    data: {
+      Pass: password,
+    },
+  });
+}
 export default {
   all,
   accountInfo,
@@ -337,4 +347,5 @@ export default {
   savedList,
   receiveHistory,
   showDebt,
+  changePassword,
 };
