@@ -61,7 +61,7 @@ export async function transHistory(id) {
       ],
     },
     include: {
-      TK_TT_DS_CK_Ma_Ng_GuiToTK_TT: {
+      TK_TT_DS_CK_Ma_Ng_NhanToTK_TT: {
         include: {
           DS_TK: {
             select: {
