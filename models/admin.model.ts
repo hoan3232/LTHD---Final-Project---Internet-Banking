@@ -33,30 +33,13 @@ export async function updateEmp(user) {
 }
 
 export async function showTrans() {
-    return await prisma.dS_CK.findMany({
-        include: {
-            TK_TT_DS_CK_Ma_Ng_NhanToTK_TT: {
-                select: {
-                    Ngan_Hang: true,
-                },
-            },
-        },
-    });
+    return await prisma.dS_CK.findMany({});
 }
 
 export async function showBankTrans(bank) {
     return await prisma.dS_CK.findMany({
         where: {
-            TK_TT_DS_CK_Ma_Ng_NhanToTK_TT: {
-                    Ngan_Hang: bank.name,
-                },
-        },
-        include: {
-            TK_TT_DS_CK_Ma_Ng_NhanToTK_TT: {
-                select: {
-                    Ngan_Hang: true,
-                },
-            },
+            NganHang: bank,
         },
     });
 }
