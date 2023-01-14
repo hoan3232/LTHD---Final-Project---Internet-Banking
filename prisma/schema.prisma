@@ -19,6 +19,7 @@ model DS_CK {
   So_Tien                       Float?   @default(0)
   Noi_Dung                      String?  @db.Text
   Hinh_Thuc_TT                  Boolean?
+  NganHang                      String?  @db.Text
   TK_TT_DS_CK_Ma_Ng_GuiToTK_TT  TK_TT    @relation("DS_CK_Ma_Ng_GuiToTK_TT", fields: [Ma_Ng_Gui], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_CK_ibfk_1")
   TK_TT_DS_CK_Ma_Ng_NhanToTK_TT TK_TT    @relation("DS_CK_Ma_Ng_NhanToTK_TT", fields: [Ma_Ng_Nhan], references: [STK], onDelete: NoAction, onUpdate: NoAction, map: "DS_CK_ibfk_2")
 
