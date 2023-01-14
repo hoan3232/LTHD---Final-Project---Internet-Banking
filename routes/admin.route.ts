@@ -17,8 +17,9 @@ router.post("/createEmp", async function (req, res) {
     res.status(201).json(list);
 });
 
-router.delete("/deleteEmp", async function (req, res) {
-    const user = req.body;
+router.delete("/deleteEmp/:id", async function (req, res) {
+    const user = req.params.id || 0;
+    console.log(user);
     const list = await adminModel.deleteEmp(user);
     res.status(201).json(list);
 });
@@ -35,8 +36,8 @@ router.get("/showTransion", async function (req, res) {
     res.status(201).json(list);
 });
 
-router.post("/showBankTrans", async function (req, res) {
-    const data = req.body;
+router.get("/showBankTrans/:id", async function (req, res) {
+    const data = req.params.id || 0;
     const list = await adminModel.showBankTrans(data);
     res.status(201).json(list);
 });

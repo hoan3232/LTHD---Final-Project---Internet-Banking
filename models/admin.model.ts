@@ -18,10 +18,9 @@ export async function createEmp(user) {
 export async function deleteEmp(user) {
     return await prisma.dS_TK.delete({
         where: {
-            Id: user.Id,
+            Id: user,
         },
-    });
-    
+    }); 
 }
 
 export async function updateEmp(user) {
