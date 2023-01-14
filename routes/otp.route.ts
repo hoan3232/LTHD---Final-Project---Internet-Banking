@@ -56,7 +56,7 @@ router.post("/sendOTP/:email", async function (req, res) {
   });
 });
 
-router.post("/test", checkOTP, function (req, res) {
+router.post("/verifyOTP", checkOTP, function (req, res) {
   res.status(201);
   return res.json({
     message: "OTP test passed !!!",

@@ -59,7 +59,7 @@ model DS_TK {
   Pass        String  @db.Text
   Ten_DK      String  @db.Text
   Ten_Goi_Nho String? @db.Text
-  Email       String  @db.Char(255)
+  Email       String  @unique(map: "Email") @db.Char(255)
   Phone       String  @unique(map: "Phone") @db.Char(255)
   rfToken     String? @db.Text
   TK_TT       TK_TT?

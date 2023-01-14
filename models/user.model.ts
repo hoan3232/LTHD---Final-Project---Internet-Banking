@@ -327,7 +327,7 @@ export async function savedList(id) {
 export async function changePassword(id, password) {
   return await prisma.dS_TK.update({
     where: {
-      Id: id,
+      Email: id,
     },
     data: {
       Pass: password,
