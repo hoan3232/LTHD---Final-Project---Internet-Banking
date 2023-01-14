@@ -155,7 +155,7 @@ export async function accountStatus(id) {
 }
 
 export async function createNotice(note) {
-  return await prisma.dS_TK.create({ data: note });
+  return await prisma.dS_NN.create({ data: note });
 }
 
 export async function showNotice(id) {

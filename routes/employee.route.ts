@@ -5,7 +5,7 @@ import employeeModel, { authUser } from "../models/employee.model.js";
 
 const router = Router();
 
-router.get("/all", authUser, async function (req, res) {
+router.post("/all", authUser, async function (req, res) {
   const list = await employeeModel.all();
   res.status(201).json(list);
 });
