@@ -208,7 +208,7 @@ export async function deleteNotice(data) {
 export async function payment(payment) {
   await prisma.tK_TT.update({
     where: {
-      Id: payment.Id1,
+      STK: payment.Id1,
     },
     data: {
       So_Du: {
@@ -219,7 +219,7 @@ export async function payment(payment) {
 
   await prisma.tK_TT.update({
     where: {
-      Id: payment.Id2,
+      STK: payment.Id2,
     },
     data: {
       So_Du: {

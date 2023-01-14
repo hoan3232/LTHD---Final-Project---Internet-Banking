@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import authMdw from "../middlewares/auth.mdw.js";
 import userModel from "../models/user.model.js";
 import checkOTP from "../middlewares/checkOTP.mdw.js";
+import { verify } from "crypto";
 const router = Router();
 
 router.get("/all", async function (req, res) {
@@ -75,6 +76,15 @@ router.put("/payment", async function (req, res) {
     const list = await userModel.noticeStatus(payment);
     res.status(201).json(list);
   }
+});
+router.put("/transfer", checkOTP, async function (req, res) {
+  const payment = req.body;
+  console.log(payment);
+  await userModel.payment(payment);
+
+  res.status(201).json({
+    message: "Transfer successfully!",
+  });
 });
 
 router.post("/", async function (req, res) {

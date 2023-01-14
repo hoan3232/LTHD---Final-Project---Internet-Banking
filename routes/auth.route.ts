@@ -26,6 +26,7 @@ router.post("/", async function (req, res) {
       stk: user.TK_TT.STK,
       Name: user.Ten_Goi_Nho || user.Ten_DK,
       SoDu: So_DuString,
+      Email: user.Email
     },
     process.env.SECRETKEY,
     {
