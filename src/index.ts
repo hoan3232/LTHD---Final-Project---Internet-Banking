@@ -18,7 +18,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(setUser);
-
+console.log(bcrypt.hashSync("emp01", 10));
 //Routes setup
 app.use("/users", user);
 app.use("/employee", employee);
