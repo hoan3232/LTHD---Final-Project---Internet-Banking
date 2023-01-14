@@ -122,6 +122,7 @@ export async function createContact(contact) {
       Id1: contact.Id1,
       Id2: contact.Id2,
       TenGN: name.DS_TK.Ten_DK,
+      NganHang: "PTD"
     },
   });
 }

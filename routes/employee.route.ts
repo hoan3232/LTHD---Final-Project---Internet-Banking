@@ -2,6 +2,7 @@ import { prisma } from "../prisma/prisma.js";
 import * as bcrypt from "bcrypt";
 import { Router } from "express";
 import employeeModel, { authUser } from "../models/employee.model.js";
+import { randomInt } from "crypto";
 
 const router = Router();
 
@@ -19,15 +20,17 @@ router.post("/trans", authUser, async function (req, res) {
 router.post("/createUser", authUser, async function (req, res) {
   const user = req.body;
   user.Pass = bcrypt.hashSync(user.Pass, 10);
-  const list = await employeeModel.createUser(user);
-  res.status(201).json(list);
-});
-
-router.post("/createAccount", authUser, async function (req, res) {
-  const user = req.body;
+  await employeeModel.createUser(user);
+  user.STK = randomInt(100000, 1000000).toString();
   const list = await employeeModel.createUserAccount(user);
   res.status(201).json(list);
 });
+
+// router.post("/createAccount", authUser, async function (req, res) {
+//   const user = req.body;
+//   const list = await employeeModel.createUserAccount(user);
+//   res.status(201).json(list);
+// });
 
 router.put("/topupAccount", authUser, async function (req, res) {
   const data = req.body;
