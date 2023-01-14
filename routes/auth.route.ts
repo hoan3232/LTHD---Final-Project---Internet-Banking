@@ -78,6 +78,45 @@ router.post("/emp", async function (req, res) {
     refreshToken,
   });
 });
+
+router.post("/adm", async function (req, res) {
+  const user = await userModel.findById(req.body.username);
+  if (user === null) {
+    return res.json({
+      authenticated: false,
+    });
+  }
+  if (!bcrypt.compareSync(req.body.password, user.Pass)) {
+    return res.json({
+      authenticated: false,
+      SaiMK: true
+    });
+  }
+  if (!(user.Id.substring(0, 3) === "adm")) {
+    return res.json({
+      authenticated: false,
+    });
+  }
+  const accessToken = jwt.sign(
+    {
+      userId: user.Id,
+      stk: "Không có",
+      Name: user.Ten_Goi_Nho || user.Ten_DK,
+      SoDu: 0,
+    },
+    process.env.SECRETKEY,
+    {
+      expiresIn: 10 * 60, // seconds
+    }
+  );
+  const refreshToken = randomstring.generate();
+  await userModel.updateRefreshToken(user.Id, refreshToken);
+  res.json({
+    authenticated: true,
+    accessToken,
+    refreshToken,
+  });
+});
 router.post("/refresh", validate(rfTokenSchema), async function (req, res) {
   // req.body = {
   //   accessToken,
