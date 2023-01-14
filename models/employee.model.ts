@@ -26,7 +26,13 @@ export async function createUser(user) {
 }
 
 export async function createUserAccount(user) {
-  return await prisma.tK_TT.create({ data: user });
+  return await prisma.tK_TT.create({
+    data: {
+      Id: user.Id,
+      STK: user.STK,
+      Ngan_Hang: user.Ngan_hang
+    }
+  });
 }
 
 export async function topupAccount(data) {
