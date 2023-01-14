@@ -9,6 +9,7 @@ import authmdw from "../middlewares/auth.mdw.js";
 import auth from "../routes/auth.route.js";
 import externalAPI from "../routes/externalAPI.route.js";
 import employee, { setUser } from "../routes/employee.route.js";
+import admin from "../routes/admin.route.js"
 import otp from "../routes/otp.route.js";
 dotenv.config();
 // Init and setup Express
@@ -22,6 +23,7 @@ console.log(bcrypt.hashSync("emp01", 10));
 //Routes setup
 app.use("/users", user);
 app.use("/employee", employee);
+app.use("/admin", admin);
 app.use("/auth", auth);
 app.use("/API", externalAPI);
 app.use("/otp", otp);
