@@ -4,10 +4,10 @@ export async function all() {
   return await prisma.dS_CK.findMany();
 }
 
-export async function findTransByMaNgGui(name) {
+export async function findTransByMaNgGui(data) {
   return await prisma.dS_CK.findMany({
     where: {
-      Ma_Ng_Gui: name,
+      Ma_Ng_Gui: data.STK,
     },
   });
 }

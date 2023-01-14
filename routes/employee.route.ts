@@ -10,9 +10,9 @@ router.post("/all", authUser, async function (req, res) {
   res.status(201).json(list);
 });
 
-router.get("/:name", authUser, async function (req, res) {
-  const name = req.params.name || 0;
-  const list = await employeeModel.findTransByMaNgGui(name);
+router.post("/trans", authUser, async function (req, res) {
+  const data = req.body
+  const list = await employeeModel.findTransByMaNgGui(data);
   res.status(201).json(list);
 });
 
