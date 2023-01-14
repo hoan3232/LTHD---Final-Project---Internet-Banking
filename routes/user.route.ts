@@ -4,6 +4,7 @@ import authMdw from "../middlewares/auth.mdw.js";
 import userModel from "../models/user.model.js";
 import checkOTP from "../middlewares/checkOTP.mdw.js";
 import { verify } from "crypto";
+import { prisma } from "@prisma/client";
 const router = Router();
 
 router.get("/all", async function (req, res) {
@@ -105,6 +106,23 @@ router.post("/changepassword/:id", async function (req, res) {
   await userModel.changePassword(req.params.id, Pass);
   res.status(201).json({
     message: "Password changed",
+  });
+});
+router.post("/createTrans", async function (req, res) {
+  const trans = req.body;
+  console.log(trans);
+  await userModel.createTrans(trans);
+  res.status(201).json({
+    message: "Transaction saved",
+  });
+});
+
+router.put("/createContact", async function (req, res) {
+  const data = req.body;
+  console.log(data);
+  await userModel.createContact(data);
+  res.status(201).json({
+    message: "Contacted saved",
   });
 });
 
