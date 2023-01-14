@@ -334,6 +334,10 @@ export async function changePassword(id, password) {
     },
   });
 }
+
+export async function createTrans(transaction) {
+  return await prisma.dS_CK.create({ data: transaction });
+}
 export default {
   all,
   accountInfo,
@@ -357,4 +361,5 @@ export default {
   receiveHistory,
   showDebt,
   changePassword,
+  createTrans,
 };

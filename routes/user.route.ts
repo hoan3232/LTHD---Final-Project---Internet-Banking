@@ -107,5 +107,13 @@ router.post("/changepassword/:id", async function (req, res) {
     message: "Password changed",
   });
 });
+router.post("/createTrans", async function (req, res) {
+  const trans = req.body;
+  console.log(trans);
+  await userModel.createTrans(trans);
+  res.status(201).json({
+    message: "Transaction saved",
+  });
+});
 
 export default router;
